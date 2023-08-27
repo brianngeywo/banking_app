@@ -36,10 +36,12 @@ class _MyHomePageState extends State<MyHomePage> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Column(
+                  const Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        "KES 2,150",
+                        "KES 20,150",
                         style: TextStyle(
                           fontSize: 25,
                           fontWeight: FontWeight.bold,
@@ -56,22 +58,26 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                   Row(
                     children: [
-                      Icon(
+                      const Icon(
                         Icons.notifications,
                         size: 25,
                         color: Colors.white,
                       ),
-                      SizedBox(width: 10),
-                      Card(
-                        color: Colors.white,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Icon(
-                            Icons.houseboat_rounded,
-                            size: 20,
+                      const SizedBox(width: 10),
+                      SizedBox(
+                        height: 50,
+                        width: 50,
+                        child: Card(
+                          color: Colors.white,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(10),
+                            child: Image.network(
+                              "https://images.pexels.com/photos/10461791/pexels-photo-10461791.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+                              fit: BoxFit.cover,
+                            ),
                           ),
                         ),
                       ),
@@ -94,9 +100,12 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             Container(
               height: MediaQuery.of(context).size.height,
+              padding: const EdgeInsets.only(
+                top: 10.0,
+              ),
               decoration: BoxDecoration(
-                color: Colors.grey.shade50,
-                borderRadius: BorderRadius.only(
+                color: Colors.grey.shade100,
+                borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(30),
                   topRight: Radius.circular(30),
                 ),
@@ -109,14 +118,14 @@ class _MyHomePageState extends State<MyHomePage> {
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 17,
-                        color: Colors.blue.shade900,
+                        color: primaryColor,
                       ),
                     ),
                     trailing: Text(
                       "See all",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        color: Colors.blue.shade600,
+                        color: primaryColor,
                       ),
                     ),
                   ),
@@ -127,16 +136,34 @@ class _MyHomePageState extends State<MyHomePage> {
                           (e) => Padding(
                             padding: const EdgeInsets.only(left: 15.0),
                             child: Chip(
-                              side: BorderSide(color: Colors.black26, width: 2,),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(20)
+                              backgroundColor: Colors.white,
+                              side: const BorderSide(
+                                color: Colors.white,
+                                width: 1,
                               ),
+                              elevation: 10,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(20)),
                               label: Text(e),
                             ),
                           ),
                         )
                         .toList(),
-                  )
+                  ),
+                  Column(
+                    children: transactions
+                        .map(
+                          (e) => Padding(
+                            padding: const EdgeInsets.only(
+                              left: 5.0,
+                              right: 5,
+                              top: 10,
+                            ),
+                            child: transactionWidget(e),
+                          ),
+                        )
+                        .toList(),
+                  ),
                 ],
               ),
             ),
@@ -158,19 +185,63 @@ Widget actionsWidget(MainAction action) {
         child: Center(
           child: Padding(
             padding: const EdgeInsets.all(12.0),
-            child: Icon(action.icon),
+            child: SizedBox(
+              height: 25,
+              width: 25,
+              child: Image.asset(action.icon),
+            ),
           ),
         ),
       ),
-      SizedBox(
-        height: 5,
-      ),
+      const SizedBox(height: 5),
       Text(
         action.title,
-        style: TextStyle(
+        style: const TextStyle(
           color: Colors.white70,
         ),
       )
     ],
+  );
+}
+
+Widget transactionWidget(AppTransactions transaction) {
+  return ListTile(
+    tileColor: Colors.white,
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(10),
+    ),
+    leading: CircleAvatar(
+      backgroundColor: Colors.blue.shade50,
+      child: Icon(
+        transaction.isDeposit ? Icons.arrow_upward_rounded : Icons.arrow_downward_rounded,
+        color: transaction.isDeposit ? Colors.green : Colors.red,
+      ),
+    ),
+    title: Text(
+      transaction.title,
+      style: TextStyle(
+        fontWeight: FontWeight.bold,
+        color: primaryColor,
+      ),
+    ),
+    subtitle: Text(transaction.moreInfo),
+    trailing: Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Text(
+          transaction.amount,
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            color: primaryColor,
+          ),
+        ),
+        const SizedBox(
+          height: 5,
+        ),
+        Text(
+          transaction.date,
+        ),
+      ],
+    ),
   );
 }

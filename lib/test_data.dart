@@ -1,17 +1,18 @@
+
 import 'package:flutter/material.dart';
 
 class MainAction {
-  IconData icon;
+  String icon;
   String title;
 
   MainAction({required this.icon, required this.title});
 }
 
 List<MainAction> actions = [
-  MainAction(icon: Icons.arrow_upward_rounded, title: 'Deposit'),
-  MainAction(icon: Icons.arrow_forward_rounded, title: 'Send'),
-  MainAction(icon: Icons.arrow_downward_rounded, title: 'Withdraw'),
-  MainAction(icon: Icons.note_alt_outlined, title: 'Loan'),
+  MainAction(icon: "assets/wallet.png", title: 'Deposit'),
+  MainAction(icon: "assets/send.png", title: 'Send'),
+  MainAction(icon: "assets/banking.png", title: 'Withdraw'),
+  MainAction(icon: "assets/loan.png", title: 'Loan'),
 ];
 
 List<String> mainOperations = [
@@ -36,4 +37,14 @@ class AppTransactions {
   });
 }
 
-List<AppTransactions> transactions
+List<AppTransactions> transactions = [
+  AppTransactions(title: "Grocery", moreInfo: "Nairobi, Eastleigh", date: "Aug 26", isDeposit: false, amount: "KES 3,500.00"),
+  AppTransactions(title: "Salary", moreInfo: "Organisation", date: "Aug 26", isDeposit: true, amount: "KES 25,000.00"),
+  AppTransactions(title: "Transport", moreInfo: "Trans Sacco", date: "Aug 26", isDeposit: false, amount: "KES 450.00"),
+  AppTransactions(title: "Loan", moreInfo: "Loan App", date: "Aug 26", isDeposit: true, amount: "KES 5,000.00"),
+  AppTransactions(title: "Grocery", moreInfo: "Nairobi, Eastleigh", date: "Aug 25", isDeposit: false, amount: "KES 1,500.00"),
+  AppTransactions(title: "Transport", moreInfo: "Trans Sacco", date: "Aug 25", isDeposit: false, amount: "KES 250.00"),
+  AppTransactions(title: "Transport", moreInfo: "Trans Sacco", date: "Aug 24", isDeposit: false, amount: "KES 650.00"),
+];
+
+Color primaryColor = Color(0xFF223960);
