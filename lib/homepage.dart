@@ -194,13 +194,16 @@ Widget actionsWidget(MainAction action) {
         ),
       ),
       const SizedBox(height: 5),
-      Text(
-        action.title,
-        style: const TextStyle(
-          color: Colors.white70,
+      SizedBox(
+        child: Text(
+          action.title,
+          style: const TextStyle(
+            color: Colors.white70,
+          ),
+          softWrap: true,
         ),
-        softWrap: true,
-      )
+        width: 50,
+      ),
     ],
   );
 }
