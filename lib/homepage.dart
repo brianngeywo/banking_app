@@ -199,6 +199,7 @@ Widget actionsWidget(MainAction action) {
         style: const TextStyle(
           color: Colors.white70,
         ),
+        softWrap: true,
       )
     ],
   );

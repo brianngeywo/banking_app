@@ -10,9 +10,9 @@ class MainAction {
 
 List<MainAction> actions = [
   MainAction(icon: "assets/wallet.png", title: 'Deposit'),
-  MainAction(icon: "assets/send.png", title: 'Send'),
   MainAction(icon: "assets/banking.png", title: 'Withdraw'),
-  MainAction(icon: "assets/loan.png", title: 'Loan'),
+  MainAction(icon: "assets/send.png", title: 'Make Payment'),
+  MainAction(icon: "assets/transfer.png", title: 'Schedule Payment'),
 ];
 
 List<String> mainOperations = [
