@@ -89,8 +89,8 @@ class _MyHomePageState extends State<MyHomePage> {
             Padding(
               padding: const EdgeInsets.only(
                 top: 30.0,
-                right: 30,
-                left: 30,
+                right: 0,
+                left: 0,
                 bottom: 20,
               ),
               child: Row(
@@ -176,34 +176,53 @@ class _MyHomePageState extends State<MyHomePage> {
 
 Widget actionsWidget(MainAction action) {
   return Column(
+    crossAxisAlignment: CrossAxisAlignment.center,
+    mainAxisAlignment: MainAxisAlignment.spaceBetween,
     children: [
-      Card(
-        color: Colors.white,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(14),
-        ),
-        child: Center(
-          child: Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: SizedBox(
-              height: 25,
-              width: 25,
-              child: Image.asset(action.icon),
+      SizedBox(
+        height: 80,
+        child: Card(
+          color: Colors.white24,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(14),
+          ),
+          child: Center(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                // Padding(
+                //   padding: const EdgeInsets.all(12.0),
+                //   child: SizedBox(
+                //     height: 25,
+                //     width: 25,
+                //     child: Image.asset(action.icon),
+                //   ),
+                // ),
+                // const SizedBox(
+                //   height: 10,
+                // ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: SizedBox(
+                    width: 70,
+                    child: Text(
+                      action.title,
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      softWrap: true,
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
         ),
       ),
-      const SizedBox(height: 5),
-      SizedBox(
-        child: Text(
-          action.title,
-          style: const TextStyle(
-            color: Colors.white70,
-          ),
-          softWrap: true,
-        ),
-        width: 50,
-      ),
+
     ],
   );
 }
